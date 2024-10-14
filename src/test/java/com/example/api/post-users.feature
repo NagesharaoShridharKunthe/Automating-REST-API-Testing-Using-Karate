@@ -3,8 +3,8 @@ Feature: Create a new user
   Background:
     * def token = 'bc58c41bd681fdc1a355d261e04679e6c018538e3b9cc1d2a37b34aa006e4245'
     * def baseUrl = 'https://gorest.co.in/public/v1/users'
-    Given header Content-Type = 'application/json'
-    And header Authorization = 'Bearer ' + token
+    * header Content-Type = 'application/json'
+    * header Authorization = 'Bearer ' + token
 
   Scenario: All the credentials are valid(valid name, email, gender, status)
     And url baseUrl
@@ -173,4 +173,3 @@ Feature: Create a new user
       """
     When method post
     Then status 422
-

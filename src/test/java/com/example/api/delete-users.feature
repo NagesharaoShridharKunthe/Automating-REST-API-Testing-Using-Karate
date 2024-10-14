@@ -2,9 +2,9 @@ Feature: updating(put) user deatails
 
   Background:
     * def token = 'bc58c41bd681fdc1a355d261e04679e6c018538e3b9cc1d2a37b34aa006e4245'
-    Given url 'https://gorest.co.in/public/v1/'
-    Given header Content-Type = 'application/json'
-    And header Authorization = 'Bearer ' + token
+    * url 'https://gorest.co.in/public/v1/'
+    * header Content-Type = 'application/json'
+    * header Authorization = 'Bearer ' + token
 
   Scenario: Delete the user with a valid ID
     Given path 'users/7457203'
