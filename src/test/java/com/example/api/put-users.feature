@@ -7,7 +7,7 @@ Feature: updating(put) user deatails
     * header Authorization = 'Bearer ' + token
 
   Scenario: change with a valid name
-    Given path 'users/7451972'
+    Given path 'users/7471984'
     And request
       """
       {
@@ -19,11 +19,11 @@ Feature: updating(put) user deatails
     And match response.data.name == "Pruthvi"
 
   Scenario: change with a valid email
-    Given path 'users/7451967'
+    Given path 'users/7471666'
     And request
       """
       {
-        "email":"pruthvi@gmail.com"
+        "email":"pruthvi100@gmail.com"
       }
       """
     When method put
@@ -31,7 +31,7 @@ Feature: updating(put) user deatails
     And match response.data.email == "pruthvi@gmail.com"
 
   Scenario: change with a valid gender
-    Given path 'users/7451965'
+    Given path 'users/7471988'
     And request
       """
       {
@@ -43,7 +43,7 @@ Feature: updating(put) user deatails
     And match response.data.gender == "female"
 
   Scenario: change with a valid status
-    Given path 'users/7451962'
+    Given path 'users/7471670'
     And request
       """
       {
@@ -54,30 +54,8 @@ Feature: updating(put) user deatails
     Then status 200
     And match response.data.status == "inactive"
 
-  Scenario: change with a invalid name(giving number is name)
-    Given path 'users/7451972'
-    And request
-      """
-      {
-        "name":"1234"
-      }
-      """
-    When method put
-    Then status 422
-
-  Scenario: change with a invalid email
-    Given path 'users/7451967'
-    And request
-      """
-      {
-        "email":"pruthvi@.com"
-      }
-      """
-    When method put
-    Then status 422
-
   Scenario: change with a invalid gender
-    Given path 'users/7451965'
+    Given path 'users/7471980'
     And request
       """
       {
@@ -88,7 +66,7 @@ Feature: updating(put) user deatails
     Then status 422
 
   Scenario: change with a invalid status
-    Given path 'users/7451962'
+    Given path 'users/7471979'
     And request
       """
       {

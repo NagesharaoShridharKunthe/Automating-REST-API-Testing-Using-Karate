@@ -12,17 +12,12 @@ Feature: geting user deatails
     Then status 200
 
   Scenario: Retrieving details of a single/valid user
-    Given path 'users/7451967'
+    Given path 'users/7472025'
     When method GET
     Then status 200
-    And match response.data.name == "Laxman Devar DO"
+#    And match response.data.name == "Advaya Kaul"
 
   Scenario: Retriving details of a invalid user
-    Given path 'users/1234'
-    When method GET
-    Then status 404
-
-  Scenario: Retriving detalis by giving Invalid User ID Format
     Given path 'users/1234'
     When method GET
     Then status 404

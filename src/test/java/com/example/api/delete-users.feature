@@ -7,17 +7,17 @@ Feature: updating(put) user deatails
     * header Authorization = 'Bearer ' + token
 
   Scenario: Delete the user with a valid ID
-    Given path 'users/7457203'
+    Given path 'users/7471657'
     When method DELETE
     Then status 204
 
   Scenario: Testing if the user still exists
-    Given path 'users/7457203'
+    Given path 'users/7471657'
     When method GET
     Then status 404
 
   Scenario: Delete the user who has been already been deleted(Deleting the user more than once)
-    Given path 'users/7457203'
+    Given path 'users/7471657'
     When method DELETE
     Then status 404
 

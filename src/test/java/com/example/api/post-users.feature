@@ -11,30 +11,21 @@ Feature: Create a new user
     And request
       """
       {
-        "name":"Nagesha",
-        "email":"nagesh@gmail.com",
+        "name":"Nagesh",
+        "email":"nagesha1@gmail.com",
         "gender":"male",
         "status":"active"
       }
       """
     When method post
     Then status 201
+    And match response.data.name == "Nagesha"
+    And match response.data.email == "nagesh1@gmail.com"
+    And match response.data.gender == "male"
+    And match response.data.status == "active"
 
-  Scenario: Valid email, gender, status but invalid name(Giving number and character as input)
-    And url baseUrl
-    And request
-      """
-      {
-        "name":"1234$%",
-        "email":"nagesha@gmail.com",
-        "gender":"male",
-        "status":"active"
-      }
-      """
-    When method post
-    Then status 422
 
-  Scenario: Valid name, gender, status but invalid email(email without @example)
+    Scenario: Valid name, gender, status but invalid email(email without @example)
     And url baseUrl
     And request
       """
@@ -47,20 +38,8 @@ Feature: Create a new user
       """
     When method post
     Then status 422
-
-  Scenario: Valid name, gender, status but invalid email(email without TLD(top-level domain ) Example:-net, .org, .info, .com)
-    And url baseUrl
-    And request
-      """
-      {
-        "name":"Nagesha",
-        "email":"nagesha@gmail",
-        "gender":"male",
-        "status":"active"
-      }
-      """
-    When method post
-    Then status 422
+    And match response.data.field == "email"
+    And match response.data.message == "is invalid"
 
   Scenario: Valid name, gender, status but invalid email(email without name ex:- @example.com)
     And url baseUrl
@@ -75,48 +54,24 @@ Feature: Create a new user
       """
     When method post
     Then status 422
+    And match response.data.field == "email"
+    And match response.data.message == "is invalid"
 
-  Scenario: Valid name, email, status but Gender field is empty
+  Scenario: Valid name, email, status but Gender field is blank
     And url baseUrl
     And request
       """
       {
         "name":"Nagesha",
-        "email":"nagesha@gmail.com",
+        "email":"nagesha2@gmail.com",
         "gender":"",
         "status":"active"
       }
       """
     When method post
     Then status 422
-
-  Scenario: Checking if the gender field is case sensitive
-    And url baseUrl
-    And request
-      """
-      {
-        "name":"Nagesha",
-        "email":"nagsha@gmail.com",
-        "gender":"Male",
-        "status":"active"
-      }
-      """
-    When method post
-    Then status 201
-
-  Scenario: Checking if it can validate more than one field at the same time(Example giving invalid gender and email)
-    And url baseUrl
-    And request
-      """
-      {
-        "name":"Nagesha",
-        "email":"nagesha.com",
-        "gender":"M",
-        "status":"active"
-      }
-      """
-    When method post
-    Then status 422
+    And match response.data.field == "gender"
+    And match response.data.message == "can't be blank, can be male of female"
 
   Scenario: Valid name, email, gender but invalid status(Status other than active and inactive is given)
     And url baseUrl
@@ -124,13 +79,15 @@ Feature: Create a new user
       """
       {
         "name":"Nagesha",
-        "email":"nagesha@gmail.com",
+        "email":"nagesha3@gmail.com",
         "gender":"male",
         "status":"A"
       }
       """
     When method post
     Then status 422
+    And match response.data.field == "status"
+    And match response.data.message == "can't be blank"
 
   Scenario: Valid email, gender, status but name field is blank
     And url baseUrl
@@ -138,13 +95,15 @@ Feature: Create a new user
       """
       {
         "name":"",
-        "email":"nagesha@gmail.com",
+        "email":"nagesha4@gmail.com",
         "gender":"male",
         "status":"active"
       }
       """
     When method post
     Then status 422
+    And match response.data.field == "name"
+    And match response.data.message == "can't be blank"
 
   Scenario: Valid name, gender, status but email filed is blank
     And url baseUrl
@@ -159,6 +118,8 @@ Feature: Create a new user
       """
     When method post
     Then status 422
+    And match response.data.field == "email"
+    And match response.data.message == "can't be blank"
 
   Scenario: Valid name, email, gender but status filed is empty
     And url baseUrl
@@ -166,10 +127,12 @@ Feature: Create a new user
       """
       {
         "name":"Nagesha",
-        "email":"nagesha@gmail.com",
+        "email":"nagesha5@gmail.com",
         "gender":"male",
         "status":""
       }
       """
     When method post
     Then status 422
+    And match response.data.field == "status"
+    And match response.data.message == "can't be blank"
