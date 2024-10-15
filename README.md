@@ -39,21 +39,27 @@ mvn test
 
 ## Project Structure
 
-
-Automating_Rest_API_Testing_Using_Karate-2
-└── .idea
- └── src
-     └── main
-     └── test
-         └── java
-             └── com.example
-                 └── api
-                     └── delete-users.feature
-                     └── get-users.feature
-                     └── post-users.feature
-                     └── put-users.feature
-                └──runner
-                    └── ExecuteTest
+```
+RestAPIAutomatedTesting/
+├── .idea/
+│   ├── .gitignore
+│   ├── encodings.xml
+│   └── misc.xml
+├── src/
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── example/
+│                   ├── api/
+│                   │   ├── delete-user.feature
+│                   │   ├── get-user.feature
+│                   │   ├── post-user.feature
+│                   │   └── put-user.feature
+│                └── runner/
+│                │   └── ExecuteTest.java
+├── .gitignore
+└── pom.xml
+```
 
 
 
@@ -61,7 +67,7 @@ Automating_Rest_API_Testing_Using_Karate-2
 The test cases are written in Karate's Gherkin syntax and include both positive and negative scenarios for testing CRUD operations on the `/public/v1/users` endpoint.
 
 ### Example Test Case: `POST` request in `post-users.feature`
-
+```
 Feature: User API tests
 
   Scenario: Create a new user
@@ -71,22 +77,18 @@ Feature: User API tests
     When method POST
     Then status 201
     And match response.name == 'Nagesha'
+```
 
 
 ## Test Reporting and Execution Result
 After running the tests, Karate generates detailed HTML reports.
 
 ### Sample Test Execution Result
-For Delete Method:-
-<img width="1438" alt="Screenshot 2024-10-14 at 5 57 36 PM" src="https://github.com/user-attachments/assets/c9745827-dd85-4356-a664-03a13d78facb">
 
-For Get Mathod:-
-<img width="1437" alt="Screenshot 2024-10-14 at 5 38 47 PM" src="https://github.com/user-attachments/assets/2e57b18c-1fe3-4482-a1a5-4fb3a2e2bfaa">
+<img width="1436" alt="Screenshot 2024-10-15 at 12 37 56 PM" src="https://github.com/user-attachments/assets/5bf3c29e-4eb1-4c2c-b966-8d21f3a5c890">
 
-For Post Method:-
-<img width="1438" alt="Screenshot 2024-10-14 at 5 32 30 PM" src="https://github.com/user-attachments/assets/acb7bb19-77dd-466b-8a6e-9883957c3080">
+<img width="1439" alt="Screenshot 2024-10-15 at 1 02 39 PM" src="https://github.com/user-attachments/assets/e106349f-2a89-4f8c-a920-e60bcfb531b3">
 
-<img width="1433" alt="Screenshot 2024-10-14 at 5 33 01 PM" src="https://github.com/user-attachments/assets/b6db0091-dd92-4571-b7a2-bf4cca6ef8c7">
+<img width="1322" alt="Screenshot 2024-10-15 at 1 04 37 PM" src="https://github.com/user-attachments/assets/e5c5c5c2-f19b-46cd-9156-73cea5fe1636">
 
-For Put Method:-
-<img width="1439" alt="Screenshot 2024-10-14 at 5 55 10 PM" src="https://github.com/user-attachments/assets/4ce992a1-5c14-4bb2-9984-4102b9f2434b">
+View the command line output for a summary of passed and failed tests, and check the HTML report for more details.
