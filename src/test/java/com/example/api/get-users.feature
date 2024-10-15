@@ -1,4 +1,4 @@
-Feature: geting user deatails
+Feature: geting user details
 
   Background:
     * def token = 'bc58c41bd681fdc1a355d261e04679e6c018538e3b9cc1d2a37b34aa006e4245'
